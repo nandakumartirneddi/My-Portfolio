@@ -4,8 +4,7 @@ import { useState } from "react";
 import { Element, Link as ScrollLink } from "react-scroll";  
 import { motion } from "framer-motion";  
 import Navbar from "./components/Navbar";  
-import { FaChevronDown, FaGraduationCap, FaBriefcase, FaEnvelope, FaLinkedin, FaGithub ,FaArrowDown } from "react-icons/fa";  
-import Link from "next/link";
+import { FaChevronDown, FaGraduationCap, FaBriefcase, FaEnvelope, FaLinkedin, FaGithub} from "react-icons/fa";  
 
 // ✅ Text Animations
 const sentenceVariants = {
@@ -15,25 +14,11 @@ const sentenceVariants = {
     transition: { delayChildren: 0.2, staggerChildren: 0.15 },
   },
 };
-const textVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { delayChildren: 0.2, staggerChildren: 0.1 },
-  },
-};
+
 const wordVariants = {
   hidden: { opacity: 0, y: 10 },
   visible: { opacity: 1, y: 0 },
 };
-
-// Flip Animation Variants
-// Flip Animation Variants
-const flipVariants = {
-  front: { rotateY: 0, transition: { duration: 0.6 } },
-  back: { rotateY: 180, transition: { duration: 0.6 } },
-};
-
 
 // ✅ Education & Experience Data
 const education = [
@@ -87,7 +72,7 @@ export default function HomePage() {
       <Navbar />
 
       {/* Sections Container */}
-      <div className="pt-0 space-y-0">
+      <div className="space-y-0">
 
          {/* ✅ Home Section */}
       <Element name="home" className="min-h-screen flex flex-col items-center justify-center px-4 sm:px-6">
@@ -122,12 +107,12 @@ export default function HomePage() {
           </motion.p>
 
           {/* Buttons */}
-          <motion.div className="mt-8 flex flex-col sm:flex-row gap-4 sm:gap-6 items-center justify-center sm:justify-start">
-            <a href="/contact">
+          <motion.div className="mt-8 flex flex-col sm:flex-row gap-4 sm:gap-6 items-center">
+          <ScrollLink to="contact" smooth={true} duration={800} className="cursor-pointer">
               <button className="px-5 py-2 sm:px-7 sm:py-3 bg-yellow-400 text-gray-900 font-bold rounded-md shadow-md hover:bg-yellow-500 transition-all text-lg">
                 Get In Touch
               </button>
-            </a>
+            </ScrollLink>
             <a href="/SaiNandaKumar_Tirneddi.pdf" target="_blank">
               <button className="px-5 py-2 sm:px-7 sm:py-3 border-2 border-yellow-400 text-yellow-400 font-bold rounded-md hover:bg-yellow-400 hover:text-gray-900 transition-all text-lg">
                 Download Resume
@@ -165,7 +150,7 @@ export default function HomePage() {
     whileInView={{ opacity: 1 }}
     transition={{ duration: 0.8, delay: 0.6 }}
   >
-    Currently, I am pursuing my Master’s in Computer Science at California State University, Long Beach, where I specialize in Deep Learning, Natural Language Processing (NLP), and Computer Vision. My coursework includes Advanced Algorithms, Software Engineering, Artificial Intelligence, and Data Visualization, providing me with a strong theoretical foundation.
+    Currently, I am pursuing my Master&apos;s in Computer Science at California State University, Long Beach, where I specialize in Deep Learning, Natural Language Processing (NLP), and Computer Vision. My coursework includes Advanced Algorithms, Software Engineering, Artificial Intelligence, and Data Visualization, providing me with a strong theoretical foundation.
   </motion.p>
 
   <motion.p
@@ -242,7 +227,7 @@ export default function HomePage() {
         </Element>
 
       {/* Project Section*/}
-        <Element name="projects" className="min-h-screen flex flex-col items-center justify-center px-6 text-center pt-24">
+        <Element name="projects" className="min-h-screen flex flex-col items-center justify-center px-6 text-center pt-28">
   <h2 className="text-4xl font-bold text-yellow-400 mb-10">My Projects</h2>
 
   {/* Project Cards Container */}
@@ -287,10 +272,25 @@ export default function HomePage() {
 </Element>
         {/* Contact Section */}
         <Element name="contact" className="min-h-screen flex flex-col items-center justify-center text-center px-6">
-          <h2 className="text-4xl font-bold text-yellow-400">Get in Touch</h2>
-          <p className="text-xl mt-4 text-gray-300 max-w-3xl mx-auto">
-            Feel free to reach out for collaborations or discussions.
-          </p>
+          {/* Animated Heading */}
+      <motion.h1
+        className="text-4xl md:text-5xl font-bold font-mono text-yellow-400 mb-6"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+      >
+        Let's Get In Touch
+      </motion.h1>
+      {/* Contact Description */}
+      <motion.p
+        className="text-lg md:text-xl text-gray-300 text-center max-w-2xl leading-relaxed mb-6"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5, duration: 0.8 }}
+      >
+        I am a Recent graduate and currently looking for opportunities to contribute and grow in the tech industry.
+        My inbox is always open! Feel free to reach out if you have any questions, want to collaborate, or discuss a new opportunity.
+      </motion.p>
           <div className="mt-6 flex space-x-6 text-3xl text-yellow-400">
             <a href="mailto:your.email@example.com" target="_blank"><FaEnvelope className="hover:text-yellow-500 transition" /></a>
             <a href="https://linkedin.com/in/yourprofile" target="_blank"><FaLinkedin className="hover:text-yellow-500 transition" /></a>
