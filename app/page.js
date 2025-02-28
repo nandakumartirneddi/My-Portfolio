@@ -1,10 +1,11 @@
 "use client"; 
 
 import { useState } from "react";  
+import Image from "next/image";
+import Link from "next/link";
 import { Element, Link as ScrollLink } from "react-scroll";  
 import { motion } from "framer-motion";  
-import Navbar from "./components/Navbar";  
-import { FaChevronDown, FaGraduationCap, FaBriefcase, FaEnvelope, FaLinkedin, FaGithub} from "react-icons/fa";  
+import { FaChevronDown, FaGraduationCap,FaHtml5,FaDatabase,FaRobot,FaBriefcase,FaCloud, FaEnvelope,FaCode, FaLinkedin, FaGithub} from "react-icons/fa";  
 
 // ✅ Text Animations
 const sentenceVariants = {
@@ -60,7 +61,6 @@ const projects = [
   },
 ];
 
-
 export default function HomePage() {
   const [selectedTab, setSelectedTab] = useState("education");
   const [flipped, setFlipped] = useState([false, false, false, false]);// ✅ Track each card's flip state
@@ -69,46 +69,57 @@ export default function HomePage() {
   };
   return (
     <div className="bg-[#0f172a] text-white">
-      <Navbar />
+     
 
       {/* Sections Container */}
       <div className="space-y-0">
 
          {/* ✅ Home Section */}
-      <Element name="home" className="min-h-screen flex flex-col items-center justify-center px-4 sm:px-6">
-        <div className="w-full max-w-4xl text-center sm:text-left">
-          <p className="text-gray-400 text-sm sm:text-lg">Hi there,</p>
+         <Element name="home" className="min-h-screen flex flex-col items-center justify-center px-4 sm:px-6">
+          
+          {/* Profile Image Section */}
+          <motion.div
+            className="w-52 h-52 md:w-60 md:h-60 rounded-full overflow-hidden border-4 border-gray-700 shadow-lg"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+          >
+            <Image
+              src="/profile1.jpg" // ✅ Replace with your actual profile image
+              alt="Profile Picture"
+              width={250}
+              height={250}
+              className="object-cover w-full h-full"
+            />
+          </motion.div>
 
-          {/* Animated Name Text */}
+          {/* Animated Name with Motion Effect */}
           <motion.h1
-            className="text-3xl sm:text-5xl md:text-6xl font-bold mt-2 leading-tight font-typewriter"
+            className="text-3xl sm:text-5xl md:text-6xl font-bold mt-4 leading-tight font-typewriter text-center"
             variants={sentenceVariants}
             initial="hidden"
             animate="visible"
           >
-            {["My ", "name ", "is ", "Sai ", "Nanda ", "Kumar ", "Tirneddi"].map((word, index) => (
-              <motion.span
-                key={index}
-                className="mr-2 text-yellow-400 inline-block"
-                variants={wordVariants}
-              >
+            {["Hi, ", "I'm", "  Sai ", "Nanda ", "Kumar"].map((word, index) => (
+              <motion.span key={index} className="mr-3 text-yellow-400 inline-block" variants={wordVariants}>
                 {word}
               </motion.span>
             ))}
           </motion.h1>
 
+          {/* Subtext - Matching Image Style */}
           <motion.p
-            className="text-gray-300 text-lg sm:text-xl md:text-2xl mt-3 leading-relaxed font-typewriter"
+            className="text-gray-300 text-lg sm:text-xl md:text-2xl mt-3 leading-relaxed text-center"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.2, duration: 0.5 }}
           >
-            I am a Full-Stack Developer
+            Full-Stack Developer | Java, Spring Boot, React | AI & GenAI Enthusiast
           </motion.p>
 
-          {/* Buttons */}
+          {/* Buttons - Keeping Your Existing Style */}
           <motion.div className="mt-8 flex flex-col sm:flex-row gap-4 sm:gap-6 items-center">
-          <ScrollLink to="contact" smooth={true} duration={800} className="cursor-pointer">
+            <ScrollLink to="contact" smooth={true} duration={800} className="cursor-pointer">
               <button className="px-5 py-2 sm:px-7 sm:py-3 bg-yellow-400 text-gray-900 font-bold rounded-md shadow-md hover:bg-yellow-500 transition-all text-lg">
                 Get In Touch
               </button>
@@ -120,111 +131,149 @@ export default function HomePage() {
             </a>
           </motion.div>
 
-          {/* Scroll Down Text & Icon */}
-          <div className="mt-10 sm:mt-16 flex flex-col items-center">
-            <p className="text-gray-400 text-sm sm:text-lg">Scroll down to explore my work</p>
-            <ScrollLink to="about" smooth={true} duration={800} className="cursor-pointer mt-2">
-              <FaChevronDown className="text-yellow-400 text-3xl animate-bounce hover:text-yellow-500 transition" />
+          {/* Scroll Down Indicator */}
+          <div className="mt-16 flex flex-col items-center">
+            <p className="text-gray-400 text-lg">Scroll down to explore my work</p>
+            <ScrollLink to="about" smooth={true} duration={800} className="cursor-pointer mt-3">
+              <FaChevronDown className="text-yellow-400 text-3xl animate-bounce" />
             </ScrollLink>
           </div>
-        </div>
-      </Element>
+        </Element>
         {/* ✅ About Section */}
-        <Element name="about" className="min-h-screen flex flex-col items-center justify-center px-6 text-center max-w-5xl mx-auto pt-24">
-          <motion.h1 className="text-4xl font-bold text-white font-typewriter">About</motion.h1>
+        <Element name="about" className="min-h-screen flex flex-col items-center justify-center px-6 text-center w-full bg-gradient-to-b from-[#0f172a] to-[#111827] relative overflow-hidden">
+  
+  {/* 🔹 Max Width */}
+  <div className="max-w-6xl mx-auto w-full px-6">
 
+    {/* 🔹 About Me Title Section */}
+    <motion.div 
+      className="mb-10 text-center relative z-10 pt-24"
+      initial={{ opacity: 0, y: -20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+    >
+      <span className="text-sm font-semibold text-gray-400 px-3 py-1 border border-gray-600 rounded-full">
+        About Me
+      </span>
+      <h1 className="text-[2.1rem] font-bold text-white mt-4">
+        Building Smart, Scalable & Efficient Software Solutions
+      </h1>
+      <p className="text-md text-gray-400 max-w-3xl mx-auto mt-3">
+        Full-Stack Developer | AI & GenAI Enthusiast
+      </p>
+    </motion.div>
 
-  {/* Animated Paragraphs */}
-  <motion.p
-    className="text-lg text-gray-300 mt-6 leading-relaxed font-typewriter"
-    initial={{ opacity: 0 }}
-    whileInView={{ opacity: 1 }}
-    transition={{ duration: 0.8, delay: 0.3 }}
-  >
-   I am Sai Nanda Kumar Tirneddi, a Full-Stack Developer with 1.5 years of experience in building scalable and efficient applications. My expertise lies in Java, Spring Boot, React.js, and Artificial Intelligence, and I am passionate about crafting high-performance software solutions.
-  </motion.p>
+    {/* 🔹 Grid Layout */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr] gap-6 w-full items-start">
 
-  <motion.p
-    className="text-lg text-gray-300 mt-4 leading-relaxed font-typewriter"
-    initial={{ opacity: 0 }}
-    whileInView={{ opacity: 1 }}
-    transition={{ duration: 0.8, delay: 0.6 }}
-  >
-    Currently, I am pursuing my Master&apos;s in Computer Science at California State University, Long Beach, where I specialize in Deep Learning, Natural Language Processing (NLP), and Computer Vision. My coursework includes Advanced Algorithms, Software Engineering, Artificial Intelligence, and Data Visualization, providing me with a strong theoretical foundation.
-  </motion.p>
-
-  <motion.p
-    className="text-lg text-gray-300 mt-4 leading-relaxed font-typewriter"
-    initial={{ opacity: 0 }}
-    whileInView={{ opacity: 1 }}
-    transition={{ duration: 0.8, delay: 0.9 }}
-  >
-    I thrive in dynamic and collaborative environments, always looking for opportunities to learn, innovate, and contribute. 
-  </motion.p>
-
-  {/* ✅ Tech Stack Section */}
-  <motion.h2
-    className="text-2xl font-bold text-yellow-400 mt-10"
-    initial={{ opacity: 0 }}
-    whileInView={{ opacity: 1 }}
-    transition={{ duration: 0.8, delay: 1.2 }}
-  >
-    My Tech Stack
-  </motion.h2>
-
-  {/* Tech Stack Badges */}
-  <motion.div
-    className="flex flex-wrap gap-3 mt-4 justify-center"
-    initial={{ opacity: 0 }}
-    whileInView={{ opacity: 1 }}
-    transition={{ duration: 0.8, delay: 1.5 }}
-  >
-    {[
-      "JavaScript", "React", "Next.js", "Node.js", "Spring Boot",
-      "Tailwind CSS", "PostgreSQL", "MySQL", "MongoDB", "Docker", "AWS"
-    ].map((tech, index) => (
-      <motion.span
-        key={index}
-        className="bg-gray-800 px-3 py-1 rounded-md text-sm text-gray-200 font-semibold"
+      {/* 📚 Background Card (Left Column - Dynamic Height) */}
+      <motion.div 
+        className="md:row-span-2 bg-gray-900 p-5 rounded-xl shadow-lg text-left flex flex-col border border-gray-800 w-full"
         initial={{ opacity: 0, y: 10 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, delay: index * 0.1 }}
+        transition={{ delay: 0.5, duration: 0.6 }}
       >
-        {tech}
-      </motion.span>
-    ))}
-  </motion.div>
+        <h3 className="text-[1.1rem] font-bold text-white flex items-center">
+          <FaGraduationCap className="mr-3 text-yellow-400 text-[1.7rem]" /> Background
+        </h3>
+        <p className="text-gray-300 text-[0.95rem] mt-3 leading-relaxed font-typewriter">
+          Self-motivated IT professional with 1.5 years of full-stack development experience in Java, Spring Boot, React.js, and AI. Pursuing a Master’s in Computer Science, specializing in deep learning, NLP, and computer vision. Passionate about building high-performance software solutions, optimizing performance, and driving innovation.
+        </p>
+      </motion.div>
 
-          {/* ✅ Academic & Professional Toggle */}
-          <div className="mt-10 flex gap-6 text-lg">
-            <button onClick={() => setSelectedTab("education")} className={`font-semibold flex items-center ${selectedTab === "education" ? "text-yellow-400" : "text-gray-400"} transition-all`}>
-              <FaGraduationCap className="text-3xl mr-2" /> Academic
-            </button>
-            <button onClick={() => setSelectedTab("experience")} className={`font-semibold flex items-center ${selectedTab === "experience" ? "text-yellow-400" : "text-gray-400"} transition-all`}>
-              <FaBriefcase className="text-3xl mr-2" /> Professional
-            </button>
-          </div>
+      {/* 💾 Backend Tech & Databases */}
+      <motion.div 
+        className="bg-gray-900 p-5 rounded-xl shadow-lg text-left flex flex-col border border-gray-800 w-full h-auto"
+        initial={{ opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.6, duration: 0.6 }}
+      >
+        <h3 className="text-[1.1rem] font-bold text-white flex items-center">
+          <FaDatabase className="mr-3 text-blue-400 text-[1.7rem]" /> Backend Tech & Databases
+        </h3>
+        <div className="flex flex-wrap gap-2 mt-3">
+          {["Spring Boot", "Spring Security", "JDBC", "Hibernate", "JWT", "JUnit", "Node.js", "SQL", "PL/SQL", "MongoDB"].map((tech, index) => (
+            <span key={index} className="bg-gray-800 px-3 py-1 rounded-md text-[0.9rem] text-gray-200 font-semibold hover:bg-gray-700 transition">
+              {tech}
+            </span>
+          ))}
+        </div>
+      </motion.div>
 
-          {/* ✅ Dynamic Content */}
-          <motion.div className="mt-8 border-l-4 border-yellow-400 pl-6">
-            {selectedTab === "education"
-              ? education.map((edu, index) => (
-                <div key={index} className="mb-6">
-                  <p className="text-gray-400">{edu.year}</p>
-                  <h3 className="text-xl font-bold">{edu.title}</h3>
-                  <p className="text-gray-300">{edu.college}</p>
-                </div>
-              ))
-              : experience.map((exp, index) => (
-                <div key={index} className="mb-6">
-                  <p className="text-gray-400">{exp.year}</p>
-                  <h3 className="text-xl font-bold">{exp.title}</h3>
-                  <p className="text-gray-300">{exp.company}</p>
-                </div>
-              ))}
-          </motion.div>
-        </Element>
+      {/* 🌐 API's & Cloud */}
+      <motion.div 
+        className="bg-gray-900 p-5 rounded-xl shadow-lg text-left flex flex-col border border-gray-800 w-full h-auto"
+        initial={{ opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.7, duration: 0.6 }}
+      >
+        <h3 className="text-[1.1rem] font-bold text-white flex items-center">
+          <FaCloud className="mr-3 text-green-400 text-[1.7rem]" /> API's & Cloud
+        </h3>
+        <div className="flex flex-wrap gap-2 mt-3">
+          {["RESTful API", "Docker", "CI/CD", "AWS", "GraphQL","Kubernetes"].map((tech, index) => (
+            <span key={index} className="bg-gray-800 px-4 py-1 rounded-md text-[0.9rem] text-gray-200 font-semibold hover:bg-gray-700 transition">
+              {tech}
+            </span>
+          ))}
+        </div>
+      </motion.div>
+
+      {/* 💻 Programming - Fixed Height Issue */}
+      <motion.div 
+        className="bg-gray-900 p-5 rounded-xl shadow-lg text-left flex flex-col border border-gray-800 w-full h-auto"
+        initial={{ opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.8, duration: 0.6 }}
+      >
+        <h3 className="text-[1.1rem] font-bold text-white flex items-center">
+          <FaCode className="mr-3 text-purple-400 text-[1.7rem]" /> Programming
+        </h3>
+        <div className="flex flex-wrap gap-2 mt-3">
+          {["Java", "Python", "React", "Node.js", "Next.js"].map((lang, index) => (
+            <span key={index} className="bg-gray-800 px-3 py-1 rounded-md text-[0.9rem] text-gray-200 font-semibold hover:bg-gray-700 transition">
+              {lang}
+            </span>
+          ))}
+        </div>
+      </motion.div>
+
+      {/* 🖥 Web Technologies & Build Tools */}
+      <motion.div 
+        className="bg-gray-900 p-6 rounded-xl shadow-lg text-left flex flex-col border border-gray-800 w-full h-auto"
+        initial={{ opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.9, duration: 0.6 }}
+      >
+        <h3 className="text-[1.1rem] font-bold text-white flex items-center">
+          <FaHtml5 className="mr-3 text-red-400 text-[1.7rem]" /> Web Technologies & Build Tools
+        </h3>
+        <div className="flex flex-wrap gap-2 mt-3">
+          {["HTML5", "CSS", "React.js", "Next.js", "Redux", "Tailwind CSS", "Webpack", "Babel", "npm", "Git", "Maven", "Postman"].map((tech, index) => (
+            <span key={index} className="bg-gray-800 px-3 py-1 rounded-md text-[0.9rem] text-gray-200 font-semibold hover:bg-gray-700 transition">
+              {tech}
+            </span>
+          ))}
+        </div>
+      </motion.div>
+    </div>
+
+    {/* Button */}
+    <div className="flex justify-center mt-12 mb-16">
+    <Link href="/about">
+  <motion.button 
+    className="px-6 py-3 bg-white text-black font-semibold rounded-md shadow-md hover:bg-gray-200 transition-all flex items-center"
+    initial={{ opacity: 0, y: 10 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ delay: 1, duration: 0.6 }}
+  >
+    Learn More About Me →
+  </motion.button>
+  </Link>
+</div>
+
+  </div>
+</Element>
 
       {/* Project Section*/}
         <Element name="projects" className="min-h-screen flex flex-col items-center justify-center px-6 text-center pt-28">
@@ -292,9 +341,9 @@ export default function HomePage() {
         My inbox is always open! Feel free to reach out if you have any questions, want to collaborate, or discuss a new opportunity.
       </motion.p>
           <div className="mt-6 flex space-x-6 text-3xl text-yellow-400">
-            <a href="mailto:your.email@example.com" target="_blank"><FaEnvelope className="hover:text-yellow-500 transition" /></a>
-            <a href="https://linkedin.com/in/yourprofile" target="_blank"><FaLinkedin className="hover:text-yellow-500 transition" /></a>
-            <a href="https://github.com/yourprofile" target="_blank"><FaGithub className="hover:text-yellow-500 transition" /></a>
+            <a href="mailto:sainandakumar.tirneddi@gmail.com" target="_blank"><FaEnvelope className="hover:text-yellow-500 transition" /></a>
+            <a href="https://www.linkedin.com/in/tirneddi-sai-nanda-kumar-5167b1191/" target="_blank"><FaLinkedin className="hover:text-yellow-500 transition" /></a>
+            <a href="https://github.com/nandakumartirneddi" target="_blank"><FaGithub className="hover:text-yellow-500 transition" /></a>
           </div>
         </Element>
 
